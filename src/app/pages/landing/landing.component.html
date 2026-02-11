@@ -1,395 +1,345 @@
-<div class="landing" role="document" aria-label="Page d’accueil Syndilibre">
-  <!-- HERO -->
+<div class="landing" role="document">
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" [class.scrolled]="isScrolled()">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">
+        <i class="bi bi-building-gear"></i><span>Syndilibre</span>
+      </a>
+      <div class="nav-links">
+        <a href="#ecosystem">Fonctionnalités</a>
+        <a href="#videos-usage">Vidéos</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#cta-form" class="nav-cta">Démo gratuite <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO (dark) ═══ -->
   <header class="hero" id="hero">
-    <div class="hero-inner">
+    <div class="hero-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="hero-content reveal">
+      <span class="badge"><i class="bi bi-stars"></i> L'écosystème de gestion nouvelle génération</span>
       <h1 class="hero-title" id="hero-title">{{ headline() }}</h1>
-      <p class="hero-subtitle">
-        Un seul outil pour piloter votre activité : opérations, automatisations, communication et IA.
-      </p>
-
-      <!-- Vidéo de démo (lazy) -->
-      <section
-        class="video-section"
-        id="video"
-        #videoContainer
-        aria-labelledby="video-title"
-      >
-        <h2 id="video-title" class="sr-only">Vidéo de démo Syndilibre</h2>
-        <div class="video-wrapper" data-video-placeholder>
-          <button type="button" class="video-placeholder" (click)="onVideoClick()" aria-label="Lancer la vidéo de démo Syndilibre">
-            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            <span>Voir la démo</span>
-          </button>
-        </div>
-        <div class="video-embed" data-video-slot></div>
-      </section>
-
+      <p class="hero-sub">Un seul outil pour piloter votre activité : opérations, automatisations, communication et IA.</p>
       <div class="hero-ctas">
-        <a
-          href="mailto:demo@syndilibre.fr?subject=Demande%20de%20d%C3%A9mo%20Syndilibre"
-          class="btn btn-primary"
-          (click)="onDemoRequest('hero')"
-          aria-label="Demander une démo personnalisée de 20 minutes"
-        >
-          Demander une démo personnalisée (20 min)
+        <a href="mailto:demo@syndilibre.fr?subject=Demande%20de%20d%C3%A9mo%20Syndilibre" class="btn btn-glow" (click)="onDemoRequest('hero')">
+          <i class="bi bi-calendar-check"></i> Demander une démo
         </a>
-        <button
-          type="button"
-          class="btn btn-secondary"
-          (click)="onAllVideosClick()"
-          aria-label="Voir toutes les vidéos de démo"
-        >
-          Voir toutes les vidéos
+        <button type="button" class="btn btn-glass" (click)="onAllVideosClick()">
+          <i class="bi bi-play-circle"></i> Voir les vidéos
         </button>
       </div>
+    </div>
 
-      <div class="hero-trust" role="status" aria-live="polite">
-        <span>Migration accompagnée</span>
-        <span aria-hidden="true">•</span>
-        <span>Support humain</span>
-        <span aria-hidden="true">•</span>
-        <span>Données sécurisées</span>
+    <!-- Hero video preview -->
+    <section class="hero-video reveal" id="video" #videoContainer aria-labelledby="video-title">
+      <h2 id="video-title" class="sr-only">Vidéo de démo Syndilibre</h2>
+      <div class="video-wrapper" data-video-placeholder>
+        <button type="button" class="video-play-btn" (click)="onVideoClick()" aria-label="Lancer la vidéo de démo">
+          <span class="play-ring"><i class="bi bi-play-fill"></i></span>
+          <span class="play-text">Voir la démo — 2 min</span>
+        </button>
       </div>
+      <div class="video-embed" data-video-slot></div>
+    </section>
+
+    <div class="hero-trust reveal">
+      <span class="trust-chip"><i class="bi bi-arrow-repeat"></i> Migration accompagnée</span>
+      <span class="trust-chip"><i class="bi bi-headset"></i> Support humain</span>
+      <span class="trust-chip"><i class="bi bi-shield-lock"></i> Données sécurisées</span>
     </div>
   </header>
 
-  <!-- PROBLÈME → SOLUTION -->
-  <section class="problem-solution" id="problem-solution" aria-labelledby="problem-solution-title">
-    <h2 id="problem-solution-title" class="sr-only">Problème et solution</h2>
-    <p class="problem-solution-intro">La plupart des cabinets ne manquent pas de volonté, mais de système.</p>
-    <div class="problem-solution-grid">
-      <article class="problem-solution-card">
-        <span class="problem-solution-problem">Trop d’outils</span>
-        <span class="problem-solution-arrow" aria-hidden="true">→</span>
-        <span class="problem-solution-solution">une plateforme</span>
-      </article>
-      <article class="problem-solution-card">
-        <span class="problem-solution-problem">Trop de saisie</span>
-        <span class="problem-solution-arrow" aria-hidden="true">→</span>
-        <span class="problem-solution-solution">automatisation</span>
-      </article>
-      <article class="problem-solution-card">
-        <span class="problem-solution-problem">Trop d’incertitude</span>
-        <span class="problem-solution-arrow" aria-hidden="true">→</span>
-        <span class="problem-solution-solution">pilotage</span>
-      </article>
-    </div>
-  </section>
-
-  <!-- VIDÉOS DE DÉMO PAR USAGE -->
-  <section class="videos-usage" id="videos-usage" aria-labelledby="videos-usage-title">
-    <h2 id="videos-usage-title" class="section-title videos-usage-title">Voyez Syndilibre en situation réelle</h2>
-    <div class="videos-grid">
-      @for (video of demoVideos; track video.id) {
-        <article class="video-card">
-          <button
-            type="button"
-            class="video-card-thumb"
-            (click)="openVideoModal(video)"
-            [attr.aria-label]="'Regarder : ' + video.title"
-          >
-            <span class="video-card-play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </span>
-            <span class="video-card-duration">{{ video.duration }}</span>
-          </button>
-          <h3 class="video-card-title">{{ video.title }}</h3>
-          <a
-            href="mailto:demo@syndilibre.fr?subject=Demande%20de%20d%C3%A9mo%20adapt%C3%A9e%20%C3%A0%20mon%20cabinet"
-            class="btn btn-card-cta"
-            (click)="onDemoRequestFromVideo(video.id)"
-            aria-label="Demander une démo adaptée à mon cabinet pour cette thématique"
-          >
-            Demander une démo adaptée à mon cabinet
-          </a>
+  <!-- ═══ PROBLÈME → SOLUTION ═══ -->
+  <section class="section section--light" id="problem-solution">
+    <div class="container">
+      <p class="lead reveal">La plupart des cabinets ne manquent pas de volonté, mais de système.</p>
+      <div class="ps-grid">
+        <article class="ps-card reveal">
+          <div class="ps-icon-wrap"><i class="bi bi-puzzle"></i></div>
+          <span class="ps-problem">Trop d'outils</span>
+          <i class="bi bi-arrow-down ps-arrow" aria-hidden="true"></i>
+          <span class="ps-solution">Une plateforme unifiée</span>
         </article>
-      }
-    </div>
-  </section>
-
-  <!-- CE QUE COUVRE L'ÉCOSYSTÈME -->
-  <section class="ecosystem" id="ecosystem" aria-labelledby="ecosystem-title">
-    <header class="ecosystem-header">
-      <h2 id="ecosystem-title" class="ecosystem-title">Ce que couvre l’écosystème</h2>
-      <p class="ecosystem-subtitle">Tout ce dont votre cabinet a besoin, dans une seule plateforme.</p>
-    </header>
-    <div class="ecosystem-grid">
-      <div class="ecosystem-block">Gestion opérationnelle</div>
-      <div class="ecosystem-block">Incidents & demandes</div>
-      <div class="ecosystem-block">Automatisations</div>
-      <div class="ecosystem-block">Comptabilité & rapprochements</div>
-      <div class="ecosystem-block">Communication & réunions</div>
-      <div class="ecosystem-block">IA intégrée</div>
-    </div>
-    <p class="ecosystem-note">Les consommables tiers (ex. courrier) ne peuvent pas être illimités.</p>
-  </section>
-
-  <!-- MISE EN PLACE -->
-  <section class="mise-en-place" id="mise-en-place" aria-labelledby="mise-en-place-title">
-    <h2 id="mise-en-place-title" class="section-title mise-en-place-title">Mise en place</h2>
-    <ol class="mise-en-place-steps">
-      <li class="mise-en-place-step"><span class="mise-en-place-num">1</span> Diagnostic rapide</li>
-      <li class="mise-en-place-step"><span class="mise-en-place-num">2</span> Plan de migration</li>
-      <li class="mise-en-place-step"><span class="mise-en-place-num">3</span> Formation & démarrage</li>
-      <li class="mise-en-place-step"><span class="mise-en-place-num">4</span> Stabilisation</li>
-    </ol>
-    <a
-      href="#videos-usage"
-      class="btn btn-primary"
-      (click)="onMiseEnPlaceDemoClick($event)"
-      aria-label="Voir une démo de mise en place"
-    >
-      Voir une démo de mise en place
-    </a>
-  </section>
-
-  <!-- PREUVES & CRÉDIBILITÉ -->
-  <section class="proofs" id="proofs" aria-labelledby="proofs-title">
-    <h2 id="proofs-title" class="section-title proofs-title">Preuves & Crédibilité</h2>
-    <ul class="proofs-list">
-      <li>Utilisé en production sur un portefeuille réel</li>
-      <li>Conçu pour le terrain</li>
-      <li>Évolutif (automatisation, IA, extensions)</li>
-    </ul>
-    <div class="testimonial-zone">
-      <p class="testimonial-label">Témoignage</p>
-      <blockquote class="testimonial-quote">
-        « Placeholder témoignage client — à remplacer par un extrait texte ou une vidéo. »
-      </blockquote>
-      <div class="testimonial-video-placeholder" aria-hidden="true">
-        <span class="testimonial-video-label">Vidéo témoignage (optionnel)</span>
+        <article class="ps-card reveal">
+          <div class="ps-icon-wrap"><i class="bi bi-keyboard"></i></div>
+          <span class="ps-problem">Trop de saisie</span>
+          <i class="bi bi-arrow-down ps-arrow" aria-hidden="true"></i>
+          <span class="ps-solution">Automatisation intelligente</span>
+        </article>
+        <article class="ps-card reveal">
+          <div class="ps-icon-wrap"><i class="bi bi-question-circle"></i></div>
+          <span class="ps-problem">Trop d'incertitude</span>
+          <i class="bi bi-arrow-down ps-arrow" aria-hidden="true"></i>
+          <span class="ps-solution">Pilotage en temps réel</span>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- TARIFS + MINI-CALCULATEUR -->
-  <section class="calculator" id="tarifs" aria-labelledby="calculator-title">
-    <h2 id="calculator-title" class="section-title">Tarifs + mini-calculateur</h2>
-    <p class="section-desc calculator-tarifs">
-      <span>Syndic : 1 € / lot / mois</span>
-      <span>GL : 5 € / lot / mois</span>
-    </p>
-    <div class="calculator-grid">
-      <div class="calculator-block">
-        <label for="syndic-lots" class="calculator-label">Lots syndic</label>
-        <input
-          id="syndic-lots"
-          type="number"
-          min="0"
-          [value]="syndicLots()"
-          (input)="setSyndicLots(($any($event.target).valueAsNumber) ?? 0)"
-          class="calculator-input"
-          aria-describedby="syndic-desc"
-        />
-        <p id="syndic-desc" class="calculator-hint">Min. 50 € / mois / syndic</p>
-        <p class="calculator-result">{{ syndicPrice() }} € <span class="text-muted">/ mois</span></p>
-      </div>
-      <div class="calculator-block">
-        <label for="gestion-lots" class="calculator-label">Lots GL</label>
-        <input
-          id="gestion-lots"
-          type="number"
-          min="0"
-          [value]="gestionLots()"
-          (input)="setGestionLots(($any($event.target).valueAsNumber) ?? 0)"
-          class="calculator-input"
-        />
-        <p class="calculator-result">{{ gestionPrice() }} € <span class="text-muted">/ mois</span></p>
-      </div>
-    </div>
-    <p class="calculator-total">
-      <span>Résultat mensuel estimé</span>
-      <strong>{{ totalPrice() }} € / mois</strong>
-    </p>
-    <a
-      href="mailto:demo@syndilibre.fr?subject=Demande%20d%27estimation%20d%C3%A9taill%C3%A9e%20Syndilibre"
-      class="btn btn-primary"
-      (click)="onEstimationRequest()"
-      aria-label="Recevoir une estimation détaillée"
-    >
-      Recevoir une estimation détaillée
-    </a>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq" id="faq" aria-labelledby="faq-title">
-    <h2 id="faq-title" class="section-title faq-title">FAQ</h2>
-    <div class="faq-list" role="list">
-      @for (item of faqItems; track $index) {
-        <div class="faq-item" role="listitem">
-          <h3 class="faq-heading">
-            <button
-              type="button"
-              class="faq-trigger"
-              [id]="'faq-trigger-' + $index"
-              [attr.aria-expanded]="openFaqIndex() === $index"
-              [attr.aria-controls]="'faq-panel-' + $index"
-              (click)="toggleFaq($index)"
-            >
-              <span class="faq-trigger-text">{{ item.question }}</span>
-              <span class="faq-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  @if (openFaqIndex() === $index) {
-                    <path d="M18 15l-6-6-6 6"/>
-                  } @else {
-                    <path d="M6 9l6 6 6-6"/>
-                  }
-                </svg>
-              </span>
+  <!-- ═══ VIDÉOS DE DÉMO ═══ -->
+  <section class="section section--gray" id="videos-usage">
+    <div class="container">
+      <h2 class="section-heading reveal"><i class="bi bi-camera-reels heading-icon"></i> Voyez Syndilibre en situation réelle</h2>
+      <div class="vid-grid">
+        @for (video of demoVideos; track video.id) {
+          <article class="vid-card reveal">
+            <button type="button" class="vid-thumb" (click)="openVideoModal(video)" [attr.aria-label]="'Regarder : ' + video.title">
+              <span class="vid-play"><i class="bi bi-play-circle-fill"></i></span>
+              <span class="vid-dur"><i class="bi bi-clock"></i> {{ video.duration }}</span>
             </button>
-          </h3>
-          <div
-            class="faq-panel"
-            [id]="'faq-panel-' + $index"
-            role="region"
-            [attr.aria-labelledby]="'faq-trigger-' + $index"
-            [hidden]="openFaqIndex() !== $index"
-          >
-            <p class="faq-answer">{{ item.answer }}</p>
+            <div class="vid-body">
+              <h3 class="vid-title">{{ video.title }}</h3>
+              <a href="mailto:demo@syndilibre.fr?subject=Demande%20de%20d%C3%A9mo%20adapt%C3%A9e" class="btn btn-outline btn-sm" (click)="onDemoRequestFromVideo(video.id)">
+                <i class="bi bi-send"></i> Démo adaptée
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ÉCOSYSTÈME (dark) ═══ -->
+  <section class="section section--dark" id="ecosystem">
+    <div class="container">
+      <h2 class="section-heading section-heading--light reveal"><i class="bi bi-grid-3x3-gap heading-icon"></i> Ce que couvre l'écosystème</h2>
+      <p class="section-sub--light reveal">Tout ce dont votre cabinet a besoin, dans une seule plateforme.</p>
+      <div class="eco-grid">
+        <div class="eco-card reveal"><i class="bi bi-clipboard2-data eco-icon"></i><h3>Gestion opérationnelle</h3><p>Copropriétés, lots, contrats</p></div>
+        <div class="eco-card reveal"><i class="bi bi-exclamation-triangle eco-icon"></i><h3>Incidents & demandes</h3><p>Tickets, suivi, relances</p></div>
+        <div class="eco-card reveal"><i class="bi bi-lightning-charge eco-icon"></i><h3>Automatisations</h3><p>Workflows, rappels, alertes</p></div>
+        <div class="eco-card reveal"><i class="bi bi-calculator eco-icon"></i><h3>Comptabilité & rapprochements</h3><p>Écritures, banque, contrôle</p></div>
+        <div class="eco-card reveal"><i class="bi bi-chat-dots eco-icon"></i><h3>Communication & réunions</h3><p>AG, courriers, notifications</p></div>
+        <div class="eco-card reveal"><i class="bi bi-robot eco-icon"></i><h3>IA intégrée</h3><p>Suggestions, analyses, prédictions</p></div>
+      </div>
+      <p class="eco-note reveal"><i class="bi bi-info-circle"></i> Les consommables tiers (ex. courrier) ne peuvent pas être illimités.</p>
+    </div>
+  </section>
+
+  <!-- ═══ MISE EN PLACE ═══ -->
+  <section class="section section--light" id="mise-en-place">
+    <div class="container container--sm">
+      <h2 class="section-heading reveal"><i class="bi bi-rocket-takeoff heading-icon"></i> Mise en place</h2>
+      <div class="timeline">
+        <div class="tl-step reveal">
+          <span class="tl-num">1</span>
+          <div class="tl-content"><i class="bi bi-search tl-icon"></i><span>Diagnostic rapide</span></div>
+        </div>
+        <div class="tl-line reveal" aria-hidden="true"></div>
+        <div class="tl-step reveal">
+          <span class="tl-num">2</span>
+          <div class="tl-content"><i class="bi bi-map tl-icon"></i><span>Plan de migration</span></div>
+        </div>
+        <div class="tl-line reveal" aria-hidden="true"></div>
+        <div class="tl-step reveal">
+          <span class="tl-num">3</span>
+          <div class="tl-content"><i class="bi bi-mortarboard tl-icon"></i><span>Formation & démarrage</span></div>
+        </div>
+        <div class="tl-line reveal" aria-hidden="true"></div>
+        <div class="tl-step reveal">
+          <span class="tl-num">4</span>
+          <div class="tl-content"><i class="bi bi-check-circle tl-icon"></i><span>Stabilisation</span></div>
+        </div>
+      </div>
+      <div class="text-center reveal">
+        <a href="#videos-usage" class="btn btn-primary" (click)="onMiseEnPlaceDemoClick($event)">
+          <i class="bi bi-play-circle"></i> Voir une démo de mise en place
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TARIFS + CALCULATEUR ═══ -->
+  <section class="section section--gradient" id="tarifs">
+    <div class="container container--sm">
+      <div class="pricing-card reveal">
+        <h2 class="section-heading"><i class="bi bi-cash-coin heading-icon"></i> Tarifs transparents</h2>
+        <div class="tarif-pills">
+          <span class="tarif-pill"><i class="bi bi-building"></i> Syndic : 1 € / lot / mois</span>
+          <span class="tarif-pill"><i class="bi bi-house-door"></i> GL : 5 € / lot / mois</span>
+        </div>
+        <div class="calc-grid">
+          <div class="calc-block">
+            <label for="syndic-lots"><i class="bi bi-buildings"></i> Lots syndic</label>
+            <input id="syndic-lots" type="number" min="0" [value]="syndicLots()" (input)="setSyndicLots(($any($event.target).valueAsNumber) ?? 0)" aria-describedby="syndic-desc" />
+            <small id="syndic-desc">Min. 50 € / mois / syndic</small>
+            <span class="calc-result">{{ syndicPrice() }} €<small>/mois</small></span>
+          </div>
+          <div class="calc-block">
+            <label for="gestion-lots"><i class="bi bi-house-door"></i> Lots GL</label>
+            <input id="gestion-lots" type="number" min="0" [value]="gestionLots()" (input)="setGestionLots(($any($event.target).valueAsNumber) ?? 0)" />
+            <span class="calc-result">{{ gestionPrice() }} €<small>/mois</small></span>
           </div>
         </div>
+        <div class="calc-total">
+          <span>Résultat mensuel estimé</span>
+          <strong>{{ totalPrice() }} € / mois</strong>
+        </div>
+        <a href="mailto:demo@syndilibre.fr?subject=Estimation%20Syndilibre" class="btn btn-primary btn-block" (click)="onEstimationRequest()">
+          <i class="bi bi-envelope-paper"></i> Recevoir une estimation détaillée
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PREUVES & CRÉDIBILITÉ ═══ -->
+  <section class="section section--light" id="proofs">
+    <div class="container">
+      <h2 class="section-heading reveal"><i class="bi bi-patch-check heading-icon"></i> Preuves & Crédibilité</h2>
+      <div class="proof-grid">
+        <div class="proof-card reveal">
+          <i class="bi bi-building-check proof-icon"></i>
+          <p>Utilisé en production sur un portefeuille réel</p>
+        </div>
+        <div class="proof-card reveal">
+          <i class="bi bi-geo-alt proof-icon"></i>
+          <p>Conçu pour le terrain</p>
+        </div>
+        <div class="proof-card reveal">
+          <i class="bi bi-boxes proof-icon"></i>
+          <p>Évolutif (automatisation, IA, extensions)</p>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <span class="testi-badge"><i class="bi bi-quote"></i> Témoignage</span>
+        <blockquote>« Placeholder témoignage client — à remplacer par un extrait texte ou une vidéo. »</blockquote>
+        <div class="testi-video" aria-hidden="true">
+          <i class="bi bi-camera-video"></i><span>Vidéo témoignage (optionnel)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ (split layout) ═══ -->
+  <section class="section section--gray" id="faq">
+    <div class="container">
+      <div class="faq-split">
+        <div class="faq-left reveal">
+          <h2 class="faq-heading"><i class="bi bi-question-diamond heading-icon"></i> Questions fréquentes</h2>
+          <p class="faq-desc">Tout ce que vous devez savoir avant de commencer.</p>
+        </div>
+        <div class="faq-right">
+          @for (item of faqItems; track $index) {
+            <div class="faq-item reveal">
+              <button type="button" class="faq-trigger" [id]="'faq-trigger-' + $index" [attr.aria-expanded]="openFaqIndex() === $index" [attr.aria-controls]="'faq-panel-' + $index" (click)="toggleFaq($index)">
+                <span>{{ item.question }}</span>
+                <i class="bi bi-chevron-down faq-chevron" [class.open]="openFaqIndex() === $index"></i>
+              </button>
+              <div class="faq-panel" [id]="'faq-panel-' + $index" role="region" [attr.aria-labelledby]="'faq-trigger-' + $index" [hidden]="openFaqIndex() !== $index">
+                <p>{{ item.answer }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL + FORMULAIRE (dark) ═══ -->
+  <section class="section section--cta" id="cta-form">
+    <div class="container container--sm">
+      <h2 class="section-heading section-heading--light reveal"><i class="bi bi-chat-left-heart heading-icon"></i> Vous avez vu le produit. Voyons votre cas.</h2>
+
+      @if (formSubmitted()) {
+        <div class="form-success reveal" role="status">
+          <i class="bi bi-check-circle-fill"></i>
+          <p>Merci. Nous vous recontacterons rapidement.</p>
+        </div>
+      } @else {
+        <form class="glass-form reveal" [formGroup]="demoForm" (ngSubmit)="onSubmitDemoForm()">
+          <div class="form-hp" aria-hidden="true"><label for="website-hp">Ne pas remplir</label><input id="website-hp" type="text" formControlName="website" tabindex="-1" autocomplete="off" /></div>
+          <div class="f-grid">
+            <div class="f-field">
+              <label for="demo-nom"><i class="bi bi-person"></i> Nom</label>
+              <input id="demo-nom" type="text" formControlName="nom" autocomplete="name" placeholder="Jean Dupont" />
+            </div>
+            <div class="f-field">
+              <label for="demo-cabinet"><i class="bi bi-building"></i> Cabinet</label>
+              <input id="demo-cabinet" type="text" formControlName="cabinet" autocomplete="organization" placeholder="Mon Cabinet" />
+            </div>
+            <div class="f-field f-required">
+              <label for="demo-email"><i class="bi bi-envelope"></i> Email <span class="req">*</span></label>
+              <input id="demo-email" type="email" formControlName="email" required autocomplete="email" placeholder="jean@cabinet.fr" />
+              @if (demoForm.get('email')?.invalid && demoForm.get('email')?.touched) {
+                <span class="f-error"><i class="bi bi-exclamation-circle"></i> Email requis et valide.</span>
+              }
+            </div>
+            <div class="f-field">
+              <label for="demo-tel"><i class="bi bi-telephone"></i> Téléphone <span class="f-opt">(optionnel)</span></label>
+              <input id="demo-tel" type="tel" formControlName="telephone" autocomplete="tel" placeholder="06 12 34 56 78" />
+            </div>
+            <div class="f-field f-full">
+              <label for="demo-pf"><i class="bi bi-bar-chart-line"></i> Taille du portefeuille <span class="f-opt">(optionnel)</span></label>
+              <input id="demo-pf" type="text" formControlName="portefeuille" placeholder="ex. 200 lots" />
+            </div>
+            <div class="f-field f-full">
+              <label for="demo-msg"><i class="bi bi-chat-text"></i> Message <span class="f-opt">(optionnel)</span></label>
+              <textarea id="demo-msg" formControlName="message" rows="3" placeholder="Décrivez votre besoin..."></textarea>
+            </div>
+          </div>
+          <div class="f-actions">
+            <button type="submit" class="btn btn-glow btn-block" [disabled]="demoForm.invalid">
+              <i class="bi bi-send-fill"></i> Demander une démo personnalisée
+            </button>
+            <a [href]="calendlyUrl" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-block" (click)="onDemoRequest('calendly')">
+              <i class="bi bi-calendar3"></i> Choisir un créneau
+            </a>
+          </div>
+        </form>
       }
     </div>
   </section>
 
-  <!-- CTA FINAL + FORMULAIRE -->
-  <section class="cta-form" id="cta-form" aria-labelledby="cta-form-title">
-    <h2 id="cta-form-title" class="section-title cta-form-title">Vous avez vu le produit. Voyons votre cas.</h2>
-
-    @if (formSubmitted()) {
-      <p class="cta-form-success" role="status">Merci. Nous vous recontacterons rapidement.</p>
-    } @else {
-      <form
-        class="demo-form"
-        [formGroup]="demoForm"
-        (ngSubmit)="onSubmitDemoForm()"
-        aria-describedby="form-desc"
-      >
-        <p id="form-desc" class="sr-only">Formulaire de demande de démo personnalisée.</p>
-
-        <!-- Honeypot anti-spam (masqué) -->
-        <div class="form-hp" aria-hidden="true">
-          <label for="website-hp">Ne pas remplir</label>
-          <input id="website-hp" type="text" formControlName="website" tabindex="-1" autocomplete="off" />
-        </div>
-
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="demo-nom">Nom</label>
-            <input id="demo-nom" type="text" formControlName="nom" autocomplete="name" />
-          </div>
-          <div class="form-field">
-            <label for="demo-cabinet">Cabinet</label>
-            <input id="demo-cabinet" type="text" formControlName="cabinet" autocomplete="organization" />
-          </div>
-          <div class="form-field form-field-required">
-            <label for="demo-email">Email <span aria-hidden="true">(requis)</span></label>
-            <input id="demo-email" type="email" formControlName="email" required autocomplete="email" />
-            @if (demoForm.get('email')?.invalid && demoForm.get('email')?.touched) {
-              <span class="form-error">Email requis et valide.</span>
-            }
-          </div>
-          <div class="form-field">
-            <label for="demo-tel">Téléphone <span class="form-optional" aria-hidden="true">(optionnel)</span></label>
-            <input id="demo-tel" type="tel" formControlName="telephone" autocomplete="tel" />
-          </div>
-          <div class="form-field form-field-full">
-            <label for="demo-portefeuille">Taille du portefeuille <span class="form-optional" aria-hidden="true">(optionnel)</span></label>
-            <input id="demo-portefeuille" type="text" formControlName="portefeuille" placeholder="ex. nombre de lots" />
-          </div>
-          <div class="form-field form-field-full">
-            <label for="demo-message">Message <span class="form-optional" aria-hidden="true">(optionnel)</span></label>
-            <textarea id="demo-message" formControlName="message" rows="3"></textarea>
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary" [disabled]="demoForm.invalid">
-            Demander une démo personnalisée
-          </button>
-          <a
-            [href]="calendlyUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-secondary"
-            (click)="onDemoRequest('calendly')"
-            aria-label="Choisir un créneau sur Calendly"
-          >
-            Choisir un créneau
-          </a>
-        </div>
-      </form>
-    }
-  </section>
-
-  <!-- FOOTER -->
+  <!-- ═══ FOOTER ═══ -->
   <footer class="footer">
-    <div class="footer-brand">
-      <p class="footer-logo">Syndilibre</p>
-      <p class="footer-desc">L’écosystème de gestion pour cabinets de syndic. Une plateforme, des automatisations, une vision claire.</p>
+    <div class="footer-inner">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <p class="ft-logo"><i class="bi bi-building-gear"></i> Syndilibre</p>
+          <p class="ft-desc">L'écosystème de gestion pour cabinets de syndic. Une plateforme, des automatisations, une vision claire.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Navigation</h4>
+          <a href="#ecosystem"><i class="bi bi-grid-3x3-gap"></i> Fonctionnalités</a>
+          <a href="#videos-usage"><i class="bi bi-camera-reels"></i> Vidéos</a>
+          <a href="#tarifs"><i class="bi bi-cash-coin"></i> Tarifs</a>
+          <a href="#faq"><i class="bi bi-question-diamond"></i> FAQ</a>
+        </div>
+        <div class="ft-col">
+          <h4>Contact</h4>
+          <a href="mailto:contact@syndilibre.fr"><i class="bi bi-envelope-at"></i> contact&#64;syndilibre.fr</a>
+          <a href="#cta-form"><i class="bi bi-calendar-check"></i> Demander une démo</a>
+        </div>
+        <div class="ft-col">
+          <h4>Légal</h4>
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <p>© 2026 Syndilibre. Tous droits réservés.</p>
+        <a href="#cta-form" class="btn btn-white btn-sm">Démo gratuite <i class="bi bi-arrow-right"></i></a>
+      </div>
     </div>
-    <nav class="footer-nav" aria-label="Navigation rapide">
-      <a href="#videos-usage">Vidéos</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="#tarifs">Tarifs</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="#faq">FAQ</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="#cta-form">Contact</a>
-    </nav>
-    <div class="footer-contact">
-      <p class="footer-contact-label">Une question ?</p>
-      <a href="mailto:contact@syndilibre.fr" class="footer-email">contact&#64;syndilibre.fr</a>
-    </div>
-    <div class="footer-legal">
-      <a href="#" class="footer-link">Mentions légales</a>
-      <span class="footer-sep" aria-hidden="true">•</span>
-      <a href="#" class="footer-link">Politique de confidentialité</a>
-    </div>
-    <div class="footer-cta">
-      <p class="footer-tagline">Prêt à simplifier votre gestion ?</p>
-      <a
-        href="mailto:demo@syndilibre.fr?subject=Demande%20de%20d%C3%A9mo%20Syndilibre"
-        class="btn btn-primary"
-        (click)="onDemoRequest('footer')"
-        aria-label="Demander une démo depuis le bas de page"
-      >
-        Demander une démo personnalisée (20 min)
-      </a>
-    </div>
-    <p class="footer-copy">© 2026 Syndilibre. Tous droits réservés.</p>
   </footer>
 
-  <!-- MODAL VIDÉO -->
+  <!-- ═══ MODAL VIDÉO ═══ -->
   @if (modalVideo(); as video) {
-    <div
-      class="modal-backdrop"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-video-title"
-      (click)="closeVideoModal()"
-    >
+    <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-video-title" (click)="closeVideoModal()">
       <div class="modal-box" (click)="$event.stopPropagation()">
-        <div class="modal-header">
-          <h2 id="modal-video-title" class="modal-title">{{ video.title }}</h2>
-          <button
-            type="button"
-            class="modal-close"
-            (click)="closeVideoModal()"
-            aria-label="Fermer la vidéo"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          </button>
+        <div class="modal-head">
+          <h2 id="modal-video-title">{{ video.title }}</h2>
+          <button type="button" class="modal-x" (click)="closeVideoModal()" aria-label="Fermer"><i class="bi bi-x-lg"></i></button>
         </div>
-        <div class="modal-video-wrap">
-          <iframe
-            [src]="getVideoEmbedUrl(video)"
-            [title]="video.title"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+        <div class="modal-video">
+          <iframe [src]="getVideoEmbedUrl(video)" [title]="video.title" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
